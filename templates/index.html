@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Captioning with AI</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .left-column, .right-column {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .left-column {
+            max-width: 450px;
+        }
+
+        .right-column {
+            max-width: 450px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-width: 100%;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-column">
+            <h1>Image Captioning with AI</h1>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <label for="image">Choose an image:</label>
+                <input type="file" name="image" id="image" accept="image/*" required>
+                <button type="submit">Generate Caption</button>
+            </form>
+        </div>
+
+        <div class="right-column">
+            {% if image_url %}
+                <h2>Uploaded Image</h2>
+                <img src="{{ image_url }}" alt="Uploaded Image">
+            {% endif %}
+
+            {% if caption %}
+                <h2>Generated Caption:</h2>
+                <p>{{ caption }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- JavaScript (Optional for enhancements) -->
+    <script>
+        // Optional: JavaScript for additional functionality (like validation or animation)
+        const form = document.querySelector('form');
+        const imageInput = document.getElementById('image');
+
+        form.addEventListener('submit', function(event) {
+            if (!imageInput.files.length) {
+                alert('Please choose an image before submitting.');
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
